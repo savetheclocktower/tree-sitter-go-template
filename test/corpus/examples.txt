@@ -4,16 +4,19 @@ A string constant.
 {{"\"output\""}}
 ---
 (template
+  (action
     (interpreted_string_literal
-        (escape_sequence)
-        (escape_sequence)))
+      (escape_sequence)
+      (escape_sequence))))
 
 ====================================
 A raw string constant.
 ====================================
 {{`"output"`}}
 ---
-(template (raw_string_literal))
+(template
+  (action
+    (raw_string_literal)))
 
 ====================================
 A function call.
@@ -21,11 +24,12 @@ A function call.
 {{printf "%q" "output"}}
 ---
 (template
+  (action
     (function_call
-        (identifier)
-        (argument_list
-            (interpreted_string_literal)
-            (interpreted_string_literal))))
+      (identifier)
+      (argument_list
+        (interpreted_string_literal)
+        (interpreted_string_literal)))))
 
 ====================================
 A function call whose final argument comes from the previous command.
@@ -33,12 +37,13 @@ A function call whose final argument comes from the previous command.
 {{"output" | printf "%q"}}
 ---
 (template
+  (action
     (chained_pipeline
-        (interpreted_string_literal)
-        (function_call
-            (identifier)
-            (argument_list
-                (interpreted_string_literal)))))
+      (interpreted_string_literal)
+      (function_call
+        (identifier)
+        (argument_list
+          (interpreted_string_literal))))))
 
 ====================================
 A parenthesized argument.
@@ -46,35 +51,37 @@ A parenthesized argument.
 {{printf "%q" (print "out" "put")}}
 ---
 (template
+  (action
     (function_call
-        (identifier)
-        (argument_list
-            (interpreted_string_literal)
-            (parenthesized_pipeline
-                (function_call
-                    (identifier)
-                    (argument_list
-                        (interpreted_string_literal)
-                        (interpreted_string_literal)))))))
+      (identifier)
+      (argument_list
+        (interpreted_string_literal)
+        (parenthesized_pipeline
+          (function_call
+            (identifier)
+            (argument_list
+              (interpreted_string_literal)
+              (interpreted_string_literal))))))))
 
 ====================================
 A more elaborate call.
 ====================================
 {{"put" | printf "%s%s" "out" | printf "%q"}}
 ---
-(template
-    (chained_pipeline
+    (template
+      (action
         (chained_pipeline
+          (chained_pipeline
             (interpreted_string_literal)
             (function_call
-                (identifier)
-                (argument_list
-                    (interpreted_string_literal)
-                    (interpreted_string_literal))))
-        (function_call
+              (identifier)
+              (argument_list
+                (interpreted_string_literal)
+                (interpreted_string_literal))))
+          (function_call
             (identifier)
             (argument_list
-                (interpreted_string_literal)))))
+              (interpreted_string_literal))))))
 
 ====================================
 A longer chain.
@@ -82,17 +89,18 @@ A longer chain.
 {{"output" | printf "%s" | printf "%q"}}
 ---
 (template
+  (action
     (chained_pipeline
-        (chained_pipeline
-            (interpreted_string_literal)
-            (function_call
-                (identifier)
-                (argument_list
-                    (interpreted_string_literal))))
+      (chained_pipeline
+        (interpreted_string_literal)
         (function_call
-            (identifier)
-            (argument_list
-                (interpreted_string_literal)))))
+          (identifier)
+          (argument_list
+            (interpreted_string_literal))))
+      (function_call
+        (identifier)
+        (argument_list
+          (interpreted_string_literal))))))
 
 ====================================
 A with action using dot.
@@ -100,13 +108,16 @@ A with action using dot.
 {{with "output"}}{{printf "%q" .}}{{end}}
 ---
 (template
-    (with_action
-        (interpreted_string_literal)
-        (function_call
-            (identifier)
-            (argument_list
-                (interpreted_string_literal)
-                (dot)))))
+  (with_action
+    (with_start
+      (interpreted_string_literal))
+    (action
+      (function_call
+        (identifier)
+        (argument_list
+          (interpreted_string_literal)
+          (dot))))
+    (with_end)))
 
 ====================================
 A with action using dot.
@@ -114,13 +125,16 @@ A with action using dot.
 {{with "output"}}{{printf "%q" .}}{{end}}
 ---
 (template
-    (with_action
-        (interpreted_string_literal)
-        (function_call
-            (identifier)
-            (argument_list
-                (interpreted_string_literal)
-                (dot)))))
+  (with_action
+    (with_start
+      (interpreted_string_literal))
+    (action
+      (function_call
+        (identifier)
+        (argument_list
+          (interpreted_string_literal)
+          (dot))))
+    (with_end)))
 
 ====================================
 A with action that creates and uses a variable.
@@ -128,16 +142,21 @@ A with action that creates and uses a variable.
 {{with $x := "output" | printf "%q"}}{{$x}}{{end}}
 ---
 (template
-    (with_action
-        (variable_definition
-            (variable (identifier))
-            (chained_pipeline
-                (interpreted_string_literal)
-                (function_call
-                    (identifier)
-                    (argument_list
-                        (interpreted_string_literal)))))
-        (variable (identifier))))
+  (with_action
+    (with_start
+      (variable_definition
+        (variable
+          (identifier))
+        (chained_pipeline
+          (interpreted_string_literal)
+          (function_call
+            (identifier)
+            (argument_list
+              (interpreted_string_literal))))))
+    (action
+      (variable
+        (identifier)))
+    (with_end)))
 
 ====================================
 A with action that uses the variable in another action.
@@ -145,15 +164,20 @@ A with action that uses the variable in another action.
 {{with $x := "output"}}{{printf "%q" $x}}{{end}}
 ---
 (template
-    (with_action
-        (variable_definition
-            (variable (identifier))
-            (interpreted_string_literal))
-        (function_call
-            (identifier)
-            (argument_list
-                (interpreted_string_literal)
-                (variable (identifier))))))
+  (with_action
+    (with_start
+      (variable_definition
+        (variable
+          (identifier))
+        (interpreted_string_literal)))
+    (action
+      (function_call
+        (identifier)
+        (argument_list
+          (interpreted_string_literal)
+          (variable
+            (identifier)))))
+    (with_end)))
 
 ====================================
 The same, but pipelined.
@@ -161,15 +185,18 @@ The same, but pipelined.
 {{with $x := "output"}}{{$x | printf "%q"}}{{end}}
 ---
 (template
-    (with_action
-        (variable_definition
-            (variable
-                (identifier))
-            (interpreted_string_literal))
-        (chained_pipeline
-            (variable
-                (identifier))
-            (function_call
-                (identifier)
-                (argument_list
-                    (interpreted_string_literal))))))
+  (with_action
+    (with_start
+      (variable_definition
+        (variable
+          (identifier))
+        (interpreted_string_literal)))
+    (action
+      (chained_pipeline
+        (variable
+          (identifier))
+        (function_call
+          (identifier)
+          (argument_list
+            (interpreted_string_literal)))))
+    (with_end)))

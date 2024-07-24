@@ -1,5 +1,92 @@
 [
   {
+    "type": "action",
+    "named": true,
+    "fields": {},
+    "children": {
+      "multiple": false,
+      "required": true,
+      "types": [
+        {
+          "type": "assignment",
+          "named": true
+        },
+        {
+          "type": "chained_pipeline",
+          "named": true
+        },
+        {
+          "type": "dot",
+          "named": true
+        },
+        {
+          "type": "false",
+          "named": true
+        },
+        {
+          "type": "field",
+          "named": true
+        },
+        {
+          "type": "float_literal",
+          "named": true
+        },
+        {
+          "type": "function_call",
+          "named": true
+        },
+        {
+          "type": "imaginary_literal",
+          "named": true
+        },
+        {
+          "type": "int_literal",
+          "named": true
+        },
+        {
+          "type": "interpreted_string_literal",
+          "named": true
+        },
+        {
+          "type": "method_call",
+          "named": true
+        },
+        {
+          "type": "nil",
+          "named": true
+        },
+        {
+          "type": "parenthesized_pipeline",
+          "named": true
+        },
+        {
+          "type": "raw_string_literal",
+          "named": true
+        },
+        {
+          "type": "rune_literal",
+          "named": true
+        },
+        {
+          "type": "selector_expression",
+          "named": true
+        },
+        {
+          "type": "true",
+          "named": true
+        },
+        {
+          "type": "variable",
+          "named": true
+        },
+        {
+          "type": "variable_definition",
+          "named": true
+        }
+      ]
+    }
+  },
+  {
     "type": "argument_list",
     "named": true,
     "fields": {},
@@ -188,6 +275,73 @@
     "type": "block_action",
     "named": true,
     "fields": {
+      "body": {
+        "multiple": true,
+        "required": false,
+        "types": [
+          {
+            "type": "action",
+            "named": true
+          },
+          {
+            "type": "block_action",
+            "named": true
+          },
+          {
+            "type": "comment_action",
+            "named": true
+          },
+          {
+            "type": "define_action",
+            "named": true
+          },
+          {
+            "type": "if_action",
+            "named": true
+          },
+          {
+            "type": "range_action",
+            "named": true
+          },
+          {
+            "type": "template_action",
+            "named": true
+          },
+          {
+            "type": "text",
+            "named": true
+          },
+          {
+            "type": "with_action",
+            "named": true
+          }
+        ]
+      }
+    },
+    "children": {
+      "multiple": true,
+      "required": true,
+      "types": [
+        {
+          "type": "block_end",
+          "named": true
+        },
+        {
+          "type": "block_start",
+          "named": true
+        }
+      ]
+    }
+  },
+  {
+    "type": "block_end",
+    "named": true,
+    "fields": {}
+  },
+  {
+    "type": "block_start",
+    "named": true,
+    "fields": {
       "argument": {
         "multiple": false,
         "required": false,
@@ -267,136 +421,6 @@
           {
             "type": "variable_definition",
             "named": true
-          }
-        ]
-      },
-      "body": {
-        "multiple": true,
-        "required": false,
-        "types": [
-          {
-            "type": "-}}",
-            "named": false
-          },
-          {
-            "type": "assignment",
-            "named": true
-          },
-          {
-            "type": "block_action",
-            "named": true
-          },
-          {
-            "type": "chained_pipeline",
-            "named": true
-          },
-          {
-            "type": "comment",
-            "named": true
-          },
-          {
-            "type": "define_action",
-            "named": true
-          },
-          {
-            "type": "dot",
-            "named": true
-          },
-          {
-            "type": "false",
-            "named": true
-          },
-          {
-            "type": "field",
-            "named": true
-          },
-          {
-            "type": "float_literal",
-            "named": true
-          },
-          {
-            "type": "function_call",
-            "named": true
-          },
-          {
-            "type": "if_action",
-            "named": true
-          },
-          {
-            "type": "imaginary_literal",
-            "named": true
-          },
-          {
-            "type": "int_literal",
-            "named": true
-          },
-          {
-            "type": "interpreted_string_literal",
-            "named": true
-          },
-          {
-            "type": "method_call",
-            "named": true
-          },
-          {
-            "type": "nil",
-            "named": true
-          },
-          {
-            "type": "parenthesized_pipeline",
-            "named": true
-          },
-          {
-            "type": "range_action",
-            "named": true
-          },
-          {
-            "type": "raw_string_literal",
-            "named": true
-          },
-          {
-            "type": "rune_literal",
-            "named": true
-          },
-          {
-            "type": "selector_expression",
-            "named": true
-          },
-          {
-            "type": "template_action",
-            "named": true
-          },
-          {
-            "type": "text",
-            "named": true
-          },
-          {
-            "type": "true",
-            "named": true
-          },
-          {
-            "type": "variable",
-            "named": true
-          },
-          {
-            "type": "variable_definition",
-            "named": true
-          },
-          {
-            "type": "with_action",
-            "named": true
-          },
-          {
-            "type": "{{",
-            "named": false
-          },
-          {
-            "type": "{{-",
-            "named": false
-          },
-          {
-            "type": "}}",
-            "named": false
           }
         ]
       },
@@ -504,6 +528,21 @@
     }
   },
   {
+    "type": "comment_action",
+    "named": true,
+    "fields": {},
+    "children": {
+      "multiple": false,
+      "required": true,
+      "types": [
+        {
+          "type": "comment",
+          "named": true
+        }
+      ]
+    }
+  },
+  {
     "type": "define_action",
     "named": true,
     "fields": {
@@ -512,11 +551,7 @@
         "required": false,
         "types": [
           {
-            "type": "-}}",
-            "named": false
-          },
-          {
-            "type": "assignment",
+            "type": "action",
             "named": true
           },
           {
@@ -524,15 +559,211 @@
             "named": true
           },
           {
-            "type": "chained_pipeline",
-            "named": true
-          },
-          {
-            "type": "comment",
+            "type": "comment_action",
             "named": true
           },
           {
             "type": "define_action",
+            "named": true
+          },
+          {
+            "type": "if_action",
+            "named": true
+          },
+          {
+            "type": "range_action",
+            "named": true
+          },
+          {
+            "type": "template_action",
+            "named": true
+          },
+          {
+            "type": "text",
+            "named": true
+          },
+          {
+            "type": "with_action",
+            "named": true
+          }
+        ]
+      }
+    },
+    "children": {
+      "multiple": true,
+      "required": true,
+      "types": [
+        {
+          "type": "define_end",
+          "named": true
+        },
+        {
+          "type": "define_start",
+          "named": true
+        }
+      ]
+    }
+  },
+  {
+    "type": "define_end",
+    "named": true,
+    "fields": {}
+  },
+  {
+    "type": "define_start",
+    "named": true,
+    "fields": {
+      "name": {
+        "multiple": false,
+        "required": true,
+        "types": [
+          {
+            "type": "interpreted_string_literal",
+            "named": true
+          },
+          {
+            "type": "raw_string_literal",
+            "named": true
+          }
+        ]
+      }
+    }
+  },
+  {
+    "type": "dot",
+    "named": true,
+    "fields": {}
+  },
+  {
+    "type": "else_action",
+    "named": true,
+    "fields": {
+      "alternative": {
+        "multiple": true,
+        "required": false,
+        "types": [
+          {
+            "type": "action",
+            "named": true
+          },
+          {
+            "type": "block_action",
+            "named": true
+          },
+          {
+            "type": "comment_action",
+            "named": true
+          },
+          {
+            "type": "define_action",
+            "named": true
+          },
+          {
+            "type": "if_action",
+            "named": true
+          },
+          {
+            "type": "range_action",
+            "named": true
+          },
+          {
+            "type": "template_action",
+            "named": true
+          },
+          {
+            "type": "text",
+            "named": true
+          },
+          {
+            "type": "with_action",
+            "named": true
+          }
+        ]
+      }
+    },
+    "children": {
+      "multiple": false,
+      "required": true,
+      "types": [
+        {
+          "type": "else_start",
+          "named": true
+        }
+      ]
+    }
+  },
+  {
+    "type": "else_if_action",
+    "named": true,
+    "fields": {
+      "option": {
+        "multiple": true,
+        "required": false,
+        "types": [
+          {
+            "type": "action",
+            "named": true
+          },
+          {
+            "type": "block_action",
+            "named": true
+          },
+          {
+            "type": "comment_action",
+            "named": true
+          },
+          {
+            "type": "define_action",
+            "named": true
+          },
+          {
+            "type": "if_action",
+            "named": true
+          },
+          {
+            "type": "range_action",
+            "named": true
+          },
+          {
+            "type": "template_action",
+            "named": true
+          },
+          {
+            "type": "text",
+            "named": true
+          },
+          {
+            "type": "with_action",
+            "named": true
+          }
+        ]
+      }
+    },
+    "children": {
+      "multiple": false,
+      "required": true,
+      "types": [
+        {
+          "type": "else_if_start",
+          "named": true
+        }
+      ]
+    }
+  },
+  {
+    "type": "else_if_start",
+    "named": true,
+    "fields": {
+      "condition": {
+        "multiple": false,
+        "required": true,
+        "types": [
+          {
+            "type": "assignment",
+            "named": true
+          },
+          {
+            "type": "chained_pipeline",
             "named": true
           },
           {
@@ -553,10 +784,6 @@
           },
           {
             "type": "function_call",
-            "named": true
-          },
-          {
-            "type": "if_action",
             "named": true
           },
           {
@@ -584,10 +811,6 @@
             "named": true
           },
           {
-            "type": "range_action",
-            "named": true
-          },
-          {
             "type": "raw_string_literal",
             "named": true
           },
@@ -597,14 +820,6 @@
           },
           {
             "type": "selector_expression",
-            "named": true
-          },
-          {
-            "type": "template_action",
-            "named": true
-          },
-          {
-            "type": "text",
             "named": true
           },
           {
@@ -618,43 +833,13 @@
           {
             "type": "variable_definition",
             "named": true
-          },
-          {
-            "type": "with_action",
-            "named": true
-          },
-          {
-            "type": "{{",
-            "named": false
-          },
-          {
-            "type": "{{-",
-            "named": false
-          },
-          {
-            "type": "}}",
-            "named": false
-          }
-        ]
-      },
-      "name": {
-        "multiple": false,
-        "required": true,
-        "types": [
-          {
-            "type": "interpreted_string_literal",
-            "named": true
-          },
-          {
-            "type": "raw_string_literal",
-            "named": true
           }
         ]
       }
     }
   },
   {
-    "type": "dot",
+    "type": "else_start",
     "named": true,
     "fields": {}
   },
@@ -704,16 +889,12 @@
     "type": "if_action",
     "named": true,
     "fields": {
-      "alternative": {
+      "consequence": {
         "multiple": true,
         "required": false,
         "types": [
           {
-            "type": "-}}",
-            "named": false
-          },
-          {
-            "type": "assignment",
+            "type": "action",
             "named": true
           },
           {
@@ -721,11 +902,7 @@
             "named": true
           },
           {
-            "type": "chained_pipeline",
-            "named": true
-          },
-          {
-            "type": "comment",
+            "type": "comment_action",
             "named": true
           },
           {
@@ -733,67 +910,11 @@
             "named": true
           },
           {
-            "type": "dot",
-            "named": true
-          },
-          {
-            "type": "false",
-            "named": true
-          },
-          {
-            "type": "field",
-            "named": true
-          },
-          {
-            "type": "float_literal",
-            "named": true
-          },
-          {
-            "type": "function_call",
-            "named": true
-          },
-          {
             "type": "if_action",
             "named": true
           },
           {
-            "type": "imaginary_literal",
-            "named": true
-          },
-          {
-            "type": "int_literal",
-            "named": true
-          },
-          {
-            "type": "interpreted_string_literal",
-            "named": true
-          },
-          {
-            "type": "method_call",
-            "named": true
-          },
-          {
-            "type": "nil",
-            "named": true
-          },
-          {
-            "type": "parenthesized_pipeline",
-            "named": true
-          },
-          {
             "type": "range_action",
-            "named": true
-          },
-          {
-            "type": "raw_string_literal",
-            "named": true
-          },
-          {
-            "type": "rune_literal",
-            "named": true
-          },
-          {
-            "type": "selector_expression",
             "named": true
           },
           {
@@ -805,37 +926,46 @@
             "named": true
           },
           {
-            "type": "true",
-            "named": true
-          },
-          {
-            "type": "variable",
-            "named": true
-          },
-          {
-            "type": "variable_definition",
-            "named": true
-          },
-          {
             "type": "with_action",
             "named": true
-          },
-          {
-            "type": "{{",
-            "named": false
-          },
-          {
-            "type": "{{-",
-            "named": false
-          },
-          {
-            "type": "}}",
-            "named": false
           }
         ]
-      },
+      }
+    },
+    "children": {
+      "multiple": true,
+      "required": true,
+      "types": [
+        {
+          "type": "else_action",
+          "named": true
+        },
+        {
+          "type": "else_if_action",
+          "named": true
+        },
+        {
+          "type": "if_end",
+          "named": true
+        },
+        {
+          "type": "if_start",
+          "named": true
+        }
+      ]
+    }
+  },
+  {
+    "type": "if_end",
+    "named": true,
+    "fields": {}
+  },
+  {
+    "type": "if_start",
+    "named": true,
+    "fields": {
       "condition": {
-        "multiple": true,
+        "multiple": false,
         "required": true,
         "types": [
           {
@@ -913,266 +1043,6 @@
           {
             "type": "variable_definition",
             "named": true
-          }
-        ]
-      },
-      "consequence": {
-        "multiple": true,
-        "required": false,
-        "types": [
-          {
-            "type": "-}}",
-            "named": false
-          },
-          {
-            "type": "assignment",
-            "named": true
-          },
-          {
-            "type": "block_action",
-            "named": true
-          },
-          {
-            "type": "chained_pipeline",
-            "named": true
-          },
-          {
-            "type": "comment",
-            "named": true
-          },
-          {
-            "type": "define_action",
-            "named": true
-          },
-          {
-            "type": "dot",
-            "named": true
-          },
-          {
-            "type": "false",
-            "named": true
-          },
-          {
-            "type": "field",
-            "named": true
-          },
-          {
-            "type": "float_literal",
-            "named": true
-          },
-          {
-            "type": "function_call",
-            "named": true
-          },
-          {
-            "type": "if_action",
-            "named": true
-          },
-          {
-            "type": "imaginary_literal",
-            "named": true
-          },
-          {
-            "type": "int_literal",
-            "named": true
-          },
-          {
-            "type": "interpreted_string_literal",
-            "named": true
-          },
-          {
-            "type": "method_call",
-            "named": true
-          },
-          {
-            "type": "nil",
-            "named": true
-          },
-          {
-            "type": "parenthesized_pipeline",
-            "named": true
-          },
-          {
-            "type": "range_action",
-            "named": true
-          },
-          {
-            "type": "raw_string_literal",
-            "named": true
-          },
-          {
-            "type": "rune_literal",
-            "named": true
-          },
-          {
-            "type": "selector_expression",
-            "named": true
-          },
-          {
-            "type": "template_action",
-            "named": true
-          },
-          {
-            "type": "text",
-            "named": true
-          },
-          {
-            "type": "true",
-            "named": true
-          },
-          {
-            "type": "variable",
-            "named": true
-          },
-          {
-            "type": "variable_definition",
-            "named": true
-          },
-          {
-            "type": "with_action",
-            "named": true
-          },
-          {
-            "type": "{{",
-            "named": false
-          },
-          {
-            "type": "{{-",
-            "named": false
-          },
-          {
-            "type": "}}",
-            "named": false
-          }
-        ]
-      },
-      "option": {
-        "multiple": true,
-        "required": false,
-        "types": [
-          {
-            "type": "-}}",
-            "named": false
-          },
-          {
-            "type": "assignment",
-            "named": true
-          },
-          {
-            "type": "block_action",
-            "named": true
-          },
-          {
-            "type": "chained_pipeline",
-            "named": true
-          },
-          {
-            "type": "comment",
-            "named": true
-          },
-          {
-            "type": "define_action",
-            "named": true
-          },
-          {
-            "type": "dot",
-            "named": true
-          },
-          {
-            "type": "false",
-            "named": true
-          },
-          {
-            "type": "field",
-            "named": true
-          },
-          {
-            "type": "float_literal",
-            "named": true
-          },
-          {
-            "type": "function_call",
-            "named": true
-          },
-          {
-            "type": "if_action",
-            "named": true
-          },
-          {
-            "type": "imaginary_literal",
-            "named": true
-          },
-          {
-            "type": "int_literal",
-            "named": true
-          },
-          {
-            "type": "interpreted_string_literal",
-            "named": true
-          },
-          {
-            "type": "method_call",
-            "named": true
-          },
-          {
-            "type": "nil",
-            "named": true
-          },
-          {
-            "type": "parenthesized_pipeline",
-            "named": true
-          },
-          {
-            "type": "range_action",
-            "named": true
-          },
-          {
-            "type": "raw_string_literal",
-            "named": true
-          },
-          {
-            "type": "rune_literal",
-            "named": true
-          },
-          {
-            "type": "selector_expression",
-            "named": true
-          },
-          {
-            "type": "template_action",
-            "named": true
-          },
-          {
-            "type": "text",
-            "named": true
-          },
-          {
-            "type": "true",
-            "named": true
-          },
-          {
-            "type": "variable",
-            "named": true
-          },
-          {
-            "type": "variable_definition",
-            "named": true
-          },
-          {
-            "type": "with_action",
-            "named": true
-          },
-          {
-            "type": "{{",
-            "named": false
-          },
-          {
-            "type": "{{-",
-            "named": false
-          },
-          {
-            "type": "}}",
-            "named": false
           }
         ]
       }
@@ -1319,11 +1189,7 @@
         "required": false,
         "types": [
           {
-            "type": "-}}",
-            "named": false
-          },
-          {
-            "type": "assignment",
+            "type": "action",
             "named": true
           },
           {
@@ -1331,11 +1197,7 @@
             "named": true
           },
           {
-            "type": "chained_pipeline",
-            "named": true
-          },
-          {
-            "type": "comment",
+            "type": "comment_action",
             "named": true
           },
           {
@@ -1343,67 +1205,11 @@
             "named": true
           },
           {
-            "type": "dot",
-            "named": true
-          },
-          {
-            "type": "false",
-            "named": true
-          },
-          {
-            "type": "field",
-            "named": true
-          },
-          {
-            "type": "float_literal",
-            "named": true
-          },
-          {
-            "type": "function_call",
-            "named": true
-          },
-          {
             "type": "if_action",
             "named": true
           },
           {
-            "type": "imaginary_literal",
-            "named": true
-          },
-          {
-            "type": "int_literal",
-            "named": true
-          },
-          {
-            "type": "interpreted_string_literal",
-            "named": true
-          },
-          {
-            "type": "method_call",
-            "named": true
-          },
-          {
-            "type": "nil",
-            "named": true
-          },
-          {
-            "type": "parenthesized_pipeline",
-            "named": true
-          },
-          {
             "type": "range_action",
-            "named": true
-          },
-          {
-            "type": "raw_string_literal",
-            "named": true
-          },
-          {
-            "type": "rune_literal",
-            "named": true
-          },
-          {
-            "type": "selector_expression",
             "named": true
           },
           {
@@ -1415,32 +1221,8 @@
             "named": true
           },
           {
-            "type": "true",
-            "named": true
-          },
-          {
-            "type": "variable",
-            "named": true
-          },
-          {
-            "type": "variable_definition",
-            "named": true
-          },
-          {
             "type": "with_action",
             "named": true
-          },
-          {
-            "type": "{{",
-            "named": false
-          },
-          {
-            "type": "{{-",
-            "named": false
-          },
-          {
-            "type": "}}",
-            "named": false
           }
         ]
       },
@@ -1449,11 +1231,7 @@
         "required": false,
         "types": [
           {
-            "type": "-}}",
-            "named": false
-          },
-          {
-            "type": "assignment",
+            "type": "action",
             "named": true
           },
           {
@@ -1461,11 +1239,7 @@
             "named": true
           },
           {
-            "type": "chained_pipeline",
-            "named": true
-          },
-          {
-            "type": "comment",
+            "type": "comment_action",
             "named": true
           },
           {
@@ -1473,67 +1247,11 @@
             "named": true
           },
           {
-            "type": "dot",
-            "named": true
-          },
-          {
-            "type": "false",
-            "named": true
-          },
-          {
-            "type": "field",
-            "named": true
-          },
-          {
-            "type": "float_literal",
-            "named": true
-          },
-          {
-            "type": "function_call",
-            "named": true
-          },
-          {
             "type": "if_action",
             "named": true
           },
           {
-            "type": "imaginary_literal",
-            "named": true
-          },
-          {
-            "type": "int_literal",
-            "named": true
-          },
-          {
-            "type": "interpreted_string_literal",
-            "named": true
-          },
-          {
-            "type": "method_call",
-            "named": true
-          },
-          {
-            "type": "nil",
-            "named": true
-          },
-          {
-            "type": "parenthesized_pipeline",
-            "named": true
-          },
-          {
             "type": "range_action",
-            "named": true
-          },
-          {
-            "type": "raw_string_literal",
-            "named": true
-          },
-          {
-            "type": "rune_literal",
-            "named": true
-          },
-          {
-            "type": "selector_expression",
             "named": true
           },
           {
@@ -1545,35 +1263,36 @@
             "named": true
           },
           {
-            "type": "true",
-            "named": true
-          },
-          {
-            "type": "variable",
-            "named": true
-          },
-          {
-            "type": "variable_definition",
-            "named": true
-          },
-          {
             "type": "with_action",
             "named": true
-          },
-          {
-            "type": "{{",
-            "named": false
-          },
-          {
-            "type": "{{-",
-            "named": false
-          },
-          {
-            "type": "}}",
-            "named": false
           }
         ]
-      },
+      }
+    },
+    "children": {
+      "multiple": true,
+      "required": true,
+      "types": [
+        {
+          "type": "range_end",
+          "named": true
+        },
+        {
+          "type": "range_start",
+          "named": true
+        }
+      ]
+    }
+  },
+  {
+    "type": "range_end",
+    "named": true,
+    "fields": {}
+  },
+  {
+    "type": "range_start",
+    "named": true,
+    "fields": {
       "range": {
         "multiple": false,
         "required": false,
@@ -1823,7 +1542,7 @@
       "required": false,
       "types": [
         {
-          "type": "assignment",
+          "type": "action",
           "named": true
         },
         {
@@ -1831,11 +1550,7 @@
           "named": true
         },
         {
-          "type": "chained_pipeline",
-          "named": true
-        },
-        {
-          "type": "comment",
+          "type": "comment_action",
           "named": true
         },
         {
@@ -1843,67 +1558,11 @@
           "named": true
         },
         {
-          "type": "dot",
-          "named": true
-        },
-        {
-          "type": "false",
-          "named": true
-        },
-        {
-          "type": "field",
-          "named": true
-        },
-        {
-          "type": "float_literal",
-          "named": true
-        },
-        {
-          "type": "function_call",
-          "named": true
-        },
-        {
           "type": "if_action",
           "named": true
         },
         {
-          "type": "imaginary_literal",
-          "named": true
-        },
-        {
-          "type": "int_literal",
-          "named": true
-        },
-        {
-          "type": "interpreted_string_literal",
-          "named": true
-        },
-        {
-          "type": "method_call",
-          "named": true
-        },
-        {
-          "type": "nil",
-          "named": true
-        },
-        {
-          "type": "parenthesized_pipeline",
-          "named": true
-        },
-        {
           "type": "range_action",
-          "named": true
-        },
-        {
-          "type": "raw_string_literal",
-          "named": true
-        },
-        {
-          "type": "rune_literal",
-          "named": true
-        },
-        {
-          "type": "selector_expression",
           "named": true
         },
         {
@@ -1912,18 +1571,6 @@
         },
         {
           "type": "text",
-          "named": true
-        },
-        {
-          "type": "true",
-          "named": true
-        },
-        {
-          "type": "variable",
-          "named": true
-        },
-        {
-          "type": "variable_definition",
           "named": true
         },
         {
@@ -2163,11 +1810,7 @@
         "required": false,
         "types": [
           {
-            "type": "-}}",
-            "named": false
-          },
-          {
-            "type": "assignment",
+            "type": "action",
             "named": true
           },
           {
@@ -2175,11 +1818,7 @@
             "named": true
           },
           {
-            "type": "chained_pipeline",
-            "named": true
-          },
-          {
-            "type": "comment",
+            "type": "comment_action",
             "named": true
           },
           {
@@ -2187,67 +1826,11 @@
             "named": true
           },
           {
-            "type": "dot",
-            "named": true
-          },
-          {
-            "type": "false",
-            "named": true
-          },
-          {
-            "type": "field",
-            "named": true
-          },
-          {
-            "type": "float_literal",
-            "named": true
-          },
-          {
-            "type": "function_call",
-            "named": true
-          },
-          {
             "type": "if_action",
             "named": true
           },
           {
-            "type": "imaginary_literal",
-            "named": true
-          },
-          {
-            "type": "int_literal",
-            "named": true
-          },
-          {
-            "type": "interpreted_string_literal",
-            "named": true
-          },
-          {
-            "type": "method_call",
-            "named": true
-          },
-          {
-            "type": "nil",
-            "named": true
-          },
-          {
-            "type": "parenthesized_pipeline",
-            "named": true
-          },
-          {
             "type": "range_action",
-            "named": true
-          },
-          {
-            "type": "raw_string_literal",
-            "named": true
-          },
-          {
-            "type": "rune_literal",
-            "named": true
-          },
-          {
-            "type": "selector_expression",
             "named": true
           },
           {
@@ -2259,35 +1842,78 @@
             "named": true
           },
           {
-            "type": "true",
+            "type": "with_action",
+            "named": true
+          }
+        ]
+      },
+      "consequence": {
+        "multiple": true,
+        "required": false,
+        "types": [
+          {
+            "type": "action",
             "named": true
           },
           {
-            "type": "variable",
+            "type": "block_action",
             "named": true
           },
           {
-            "type": "variable_definition",
+            "type": "comment_action",
+            "named": true
+          },
+          {
+            "type": "define_action",
+            "named": true
+          },
+          {
+            "type": "if_action",
+            "named": true
+          },
+          {
+            "type": "range_action",
+            "named": true
+          },
+          {
+            "type": "template_action",
+            "named": true
+          },
+          {
+            "type": "text",
             "named": true
           },
           {
             "type": "with_action",
             "named": true
-          },
-          {
-            "type": "{{",
-            "named": false
-          },
-          {
-            "type": "{{-",
-            "named": false
-          },
-          {
-            "type": "}}",
-            "named": false
           }
         ]
-      },
+      }
+    },
+    "children": {
+      "multiple": true,
+      "required": true,
+      "types": [
+        {
+          "type": "with_end",
+          "named": true
+        },
+        {
+          "type": "with_start",
+          "named": true
+        }
+      ]
+    }
+  },
+  {
+    "type": "with_end",
+    "named": true,
+    "fields": {}
+  },
+  {
+    "type": "with_start",
+    "named": true,
+    "fields": {
       "condition": {
         "multiple": false,
         "required": true,
@@ -2367,136 +1993,6 @@
           {
             "type": "variable_definition",
             "named": true
-          }
-        ]
-      },
-      "consequence": {
-        "multiple": true,
-        "required": false,
-        "types": [
-          {
-            "type": "-}}",
-            "named": false
-          },
-          {
-            "type": "assignment",
-            "named": true
-          },
-          {
-            "type": "block_action",
-            "named": true
-          },
-          {
-            "type": "chained_pipeline",
-            "named": true
-          },
-          {
-            "type": "comment",
-            "named": true
-          },
-          {
-            "type": "define_action",
-            "named": true
-          },
-          {
-            "type": "dot",
-            "named": true
-          },
-          {
-            "type": "false",
-            "named": true
-          },
-          {
-            "type": "field",
-            "named": true
-          },
-          {
-            "type": "float_literal",
-            "named": true
-          },
-          {
-            "type": "function_call",
-            "named": true
-          },
-          {
-            "type": "if_action",
-            "named": true
-          },
-          {
-            "type": "imaginary_literal",
-            "named": true
-          },
-          {
-            "type": "int_literal",
-            "named": true
-          },
-          {
-            "type": "interpreted_string_literal",
-            "named": true
-          },
-          {
-            "type": "method_call",
-            "named": true
-          },
-          {
-            "type": "nil",
-            "named": true
-          },
-          {
-            "type": "parenthesized_pipeline",
-            "named": true
-          },
-          {
-            "type": "range_action",
-            "named": true
-          },
-          {
-            "type": "raw_string_literal",
-            "named": true
-          },
-          {
-            "type": "rune_literal",
-            "named": true
-          },
-          {
-            "type": "selector_expression",
-            "named": true
-          },
-          {
-            "type": "template_action",
-            "named": true
-          },
-          {
-            "type": "text",
-            "named": true
-          },
-          {
-            "type": "true",
-            "named": true
-          },
-          {
-            "type": "variable",
-            "named": true
-          },
-          {
-            "type": "variable_definition",
-            "named": true
-          },
-          {
-            "type": "with_action",
-            "named": true
-          },
-          {
-            "type": "{{",
-            "named": false
-          },
-          {
-            "type": "{{-",
-            "named": false
-          },
-          {
-            "type": "}}",
-            "named": false
           }
         ]
       }

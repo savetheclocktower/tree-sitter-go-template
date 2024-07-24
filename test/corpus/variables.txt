@@ -4,9 +4,10 @@ Variable definition
 {{ $variable := pipeline }}
 ---
 (template
+  (action
     (variable_definition
-        (variable (identifier))
-        (function_call (identifier))))
+      (variable (identifier))
+      (function_call (identifier)))))
 
 ====================================
 Variable assignment
@@ -14,9 +15,10 @@ Variable assignment
 {{ $variable = pipeline }}
 ---
 (template
+  (action
     (assignment
-        (variable (identifier))
-        (function_call (identifier))))
+      (variable (identifier))
+      (function_call (identifier)))))
 
 ====================================
 Range pipeline assignment
@@ -24,11 +26,19 @@ Range pipeline assignment
 {{ range $index, $element := pipeline }}{{ $index }}{{ $element }}{{ end }}
 ---
 (template
-    (range_action
-        (range_variable_definition
-            (variable (identifier))
-            (variable (identifier))
-            (function_call
-                (identifier)))
-        (variable (identifier))
-        (variable (identifier))))
+  (range_action
+    (range_start
+      (range_variable_definition
+        (variable
+          (identifier))
+        (variable
+          (identifier))
+        (function_call
+          (identifier))))
+    (action
+      (variable
+        (identifier)))
+    (action
+      (variable
+        (identifier)))
+    (range_end)))

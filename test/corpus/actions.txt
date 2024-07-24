@@ -8,9 +8,9 @@ comment */ }}
 ---
 
 (template
-    (comment)
+    (comment_action (comment))
     (text)
-    (comment))
+    (comment_action (comment)))
 
 ============================================
 pipeline
@@ -19,7 +19,8 @@ pipeline
 ---
 
 (template
-    (function_call (identifier)))
+  (action (function_call (identifier)))
+)
 
 =============================================
 if
@@ -27,9 +28,12 @@ if
 {{if pipeline}} t1 {{end}}
 ---
 (template
-    (if_action
-        (function_call (identifier))
-        (text)))
+  (if_action
+    (if_start (function_call (identifier)))
+    (text)
+    (if_end)
+  )
+)
 
 =============================================
 if else
@@ -37,10 +41,16 @@ if else
 {{if pipeline}} t1 {{ else }} t2 {{ end }}
 ---
 (template
-    (if_action
-        (function_call (identifier))
-        (text)
-        (text)))
+  (if_action
+    (if_start (function_call (identifier)))
+    (text)
+    (else_action
+      (else_start)
+      (text)
+    )
+    (if_end)
+  )
+)
 
 =============================================
 if else with text and template in if
@@ -48,12 +58,18 @@ if else with text and template in if
 {{if pipeline}} t1 {{ pipeline }} {{ else }} t2 {{ end }}
 ---
 (template
-    (if_action
-        (function_call (identifier))
-        (text)
-        (function_call (identifier))
-        (text)
-        (text)))
+  (if_action
+    (if_start (function_call (identifier)))
+    (text)
+    (action (function_call (identifier)))
+    (text)
+    (else_action
+      (else_start)
+      (text)
+    )
+    (if_end)
+  )
+)
 
 =============================================
 if-else
@@ -61,11 +77,16 @@ if-else
 {{if pipeline}} t1 {{ else if pipeline }} t2 {{ end }}
 ---
 (template
-    (if_action
-        (function_call (identifier))
-        (text)
-        (function_call (identifier))
-        (text)))
+  (if_action
+    (if_start (function_call (identifier)))
+    (text)
+    (else_if_action
+      (else_if_start (function_call (identifier)))
+      (text)
+    )
+    (if_end)
+  )
+)
 
 =============================================
 if-else with text and template in if
@@ -73,13 +94,18 @@ if-else with text and template in if
 {{if pipeline}} t1 {{ pipeline }} {{ else if pipeline }} t2 {{ end }}
 ---
 (template
-    (if_action
-        (function_call (identifier))
-        (text)
-        (function_call (identifier))
-        (text)
-        (function_call (identifier))
-        (text)))
+  (if_action
+    (if_start (function_call (identifier)))
+    (text)
+    (action (function_call (identifier)))
+    (text)
+    (else_if_action
+      (else_if_start (function_call (identifier)))
+      (text)
+    )
+    (if_end)
+  )
+)
 
 =============================================
 if-else else
@@ -87,12 +113,20 @@ if-else else
 {{if pipeline}} t1 {{ else if pipeline }} t2 {{ else }} t3 {{ end }}
 ---
 (template
-    (if_action
-        (function_call (identifier))
-        (text)
-        (function_call (identifier))
-        (text)
-        (text)))
+  (if_action
+    (if_start (function_call (identifier)))
+    (text)
+    (else_if_action
+      (else_if_start (function_call (identifier)))
+      (text)
+    )
+    (else_action
+      (else_start)
+      (text)
+    )
+    (if_end)
+  )
+)
 
 =============================================
 if-else else with template and text in else
@@ -100,17 +134,26 @@ if-else else with template and text in else
 {{if pipeline}} t1 {{ else if pipeline }} t2 {{ else }} {{ .Values.test }} test {{ end }}
 ---
 (template
-    (if_action
-        (function_call (identifier))
-        (text)
-        (function_call (identifier))
-        (text)
-        (text)
+  (if_action
+    (if_start
+      (function_call
+        (identifier)))
+    (text)
+    (else_if_action
+      (else_if_start
+        (function_call
+          (identifier)))
+      (text))
+    (else_action
+      (else_start)
+      (text)
+      (action
         (selector_expression
           (field
             (identifier))
-          (field_identifier))
-        (text)))
+          (field_identifier)))
+      (text))
+    (if_end)))
 
 =============================================
 if-else else with text and template in else
@@ -118,17 +161,26 @@ if-else else with text and template in else
 {{if pipeline}} t1 {{ else if pipeline }} t2 {{ else }} test {{ .Values.test }} {{ end }}
 ---
 (template
-    (if_action
-        (function_call (identifier))
-        (text)
-        (function_call (identifier))
-        (text)
-        (text)
+  (if_action
+    (if_start
+      (function_call
+        (identifier)))
+    (text)
+    (else_if_action
+      (else_if_start
+        (function_call
+          (identifier)))
+      (text))
+    (else_action
+      (else_start)
+      (text)
+      (action
         (selector_expression
           (field
             (identifier))
-          (field_identifier))
-          (text)))
+          (field_identifier)))
+      (text))
+    (if_end)))
 
 =============================================
 if-else else with text and template in if-else
@@ -136,17 +188,26 @@ if-else else with text and template in if-else
 {{if pipeline}} t1 {{ else if pipeline }} test {{ .Values.test }} {{ else }} t3 {{ end }}
 ---
 (template
-    (if_action
-        (function_call (identifier))
-        (text)
-        (function_call (identifier))
-        (text)
+  (if_action
+    (if_start
+      (function_call
+        (identifier)))
+    (text)
+    (else_if_action
+      (else_if_start
+        (function_call
+          (identifier)))
+      (text)
+      (action
         (selector_expression
           (field
             (identifier))
-          (field_identifier))
-        (text)
-        (text)))
+          (field_identifier)))
+      (text))
+    (else_action
+      (else_start)
+      (text))
+    (if_end)))
 
 =============================================
 if-else else with text and template in else and text and template in if-else
@@ -154,22 +215,32 @@ if-else else with text and template in else and text and template in if-else
 {{if pipeline}} t1 {{ else if pipeline }} test {{ .Values.test }} {{ else }} t3 {{ .Values.test }} {{ end }}
 ---
 (template
-    (if_action
-        (function_call (identifier))
-        (text)
-        (function_call (identifier))
-        (text)
+  (if_action
+    (if_start
+      (function_call
+        (identifier)))
+    (text)
+    (else_if_action
+      (else_if_start
+        (function_call
+          (identifier)))
+      (text)
+      (action
         (selector_expression
           (field
             (identifier))
-          (field_identifier))
-        (text)
-        (text)
+          (field_identifier)))
+      (text))
+    (else_action
+      (else_start)
+      (text)
+      (action
         (selector_expression
           (field
             (identifier))
-          (field_identifier))
-          (text)))
+          (field_identifier)))
+      (text))
+    (if_end)))
 
 =============================================
 if-else with text and template in if-else
@@ -177,16 +248,23 @@ if-else with text and template in if-else
 {{if pipeline}} t1 {{ else if pipeline }} test {{ .Values.test }} {{ end }}
 ---
 (template
-    (if_action
-        (function_call (identifier))
-        (text)
-        (function_call (identifier))
-        (text)
+  (if_action
+    (if_start
+      (function_call
+        (identifier)))
+    (text)
+    (else_if_action
+      (else_if_start
+        (function_call
+          (identifier)))
+      (text)
+      (action
         (selector_expression
           (field
             (identifier))
-          (field_identifier))
-          (text)))
+          (field_identifier)))
+      (text))
+    (if_end)))
 
 =============================================
 range
@@ -194,9 +272,12 @@ range
 {{range pipeline}} t1 {{ end }}
 ---
 (template
-    (range_action
-        (function_call (identifier))
-        (text)))
+  (range_action
+    (range_start
+      (function_call
+        (identifier)))
+    (text)
+    (range_end)))
 
 =============================================
 range else
@@ -204,10 +285,13 @@ range else
 {{range pipeline}} t1 {{ else }} t2 {{ end }}
 ---
 (template
-    (range_action
-        (function_call (identifier))
-        (text)
-        (text)))
+  (range_action
+    (range_start
+      (function_call
+        (identifier)))
+    (text)
+    (text)
+    (range_end)))
 
 =============================================
 template
@@ -215,8 +299,8 @@ template
 {{template "name"}}
 ---
 (template
-    (template_action
-        (interpreted_string_literal)))
+  (template_action
+    (interpreted_string_literal)))
 
 =============================================
 template with argument
@@ -224,9 +308,10 @@ template with argument
 {{template "name" pipeline}}
 ---
 (template
-    (template_action
-        (interpreted_string_literal)
-        (function_call (identifier))))
+  (template_action
+    (interpreted_string_literal)
+    (function_call
+      (identifier))))
 
 =============================================
 define
@@ -234,9 +319,11 @@ define
 {{define "name"}} t1 {{ end }}
 ---
 (template
-    (define_action
-        (interpreted_string_literal)
-        (text)))
+  (define_action
+    (define_start
+      (interpreted_string_literal))
+    (text)
+    (define_end)))
 
 =============================================
 block
@@ -244,9 +331,11 @@ block
 {{block "name"}} T1 {{end}}
 ---
 (template
-    (block_action
-        (interpreted_string_literal)
-        (text)))
+  (block_action
+    (block_start
+      (interpreted_string_literal))
+    (text)
+    (block_end)))
 
 =============================================
 block with argument
@@ -254,10 +343,13 @@ block with argument
 {{block "name" pipeline }} T1 {{end}}
 ---
 (template
-    (block_action
-    (interpreted_string_literal)
-    (function_call (identifier))
-    (text)))
+  (block_action
+    (block_start
+      (interpreted_string_literal)
+      (function_call
+        (identifier)))
+    (text)
+    (block_end)))
 
 =============================================
 with
@@ -265,9 +357,12 @@ with
 {{with pipeline}} T1 {{end}}
 ---
 (template
-    (with_action
-    (function_call (identifier))
-    (text)))
+  (with_action
+    (with_start
+      (function_call
+        (identifier)))
+    (text)
+    (with_end)))
 
 =============================================
 with else
@@ -275,7 +370,10 @@ with else
 {{with pipeline}} T1 {{else}} T0 {{end}}
 ---
 (template
-    (with_action
-    (function_call (identifier))
+  (with_action
+    (with_start
+      (function_call
+        (identifier)))
     (text)
-    (text)))
+    (text)
+    (with_end)))

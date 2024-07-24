@@ -4,8 +4,9 @@ Function without arguments
 {{ functionName }}
 ---
 (template
+  (action
     (function_call
-        (identifier)))
+      (identifier))))
 
 ====================================
 Function with argument
@@ -13,10 +14,11 @@ Function with argument
 {{ functionName $ }}
 ---
 (template
+  (action
     (function_call
-        (identifier)
-        (argument_list
-            (variable))))
+      (identifier)
+      (argument_list
+        (variable)))))
 
 ====================================
 Function with arguments
@@ -24,16 +26,17 @@ Function with arguments
 {{ functionName $ . .Field.Field2 1 }}
 ---
 (template
+  (action
     (function_call
-        (identifier)
-        (argument_list
-            (variable)
-            (dot)
-            (selector_expression
-                (field
-                    (identifier))
-                (field_identifier))
-            (int_literal))))
+      (identifier)
+      (argument_list
+        (variable)
+        (dot)
+        (selector_expression
+          (field
+            (identifier))
+          (field_identifier))
+        (int_literal)))))
 
 ====================================
 Method without arguments
@@ -41,7 +44,8 @@ Method without arguments
 {{ .Method }}
 ---
 (template
-    (field (identifier)))
+  (action
+    (field (identifier))))
 
 ====================================
 Method with argument
@@ -49,11 +53,12 @@ Method with argument
 {{ .Method $ }}
 ---
 (template
+  (action
     (method_call
-        (field
-            (identifier))
-        (argument_list
-            (variable))))
+      (field
+        (identifier))
+      (argument_list
+        (variable)))))
 
 ====================================
 Method with arguments
@@ -61,16 +66,17 @@ Method with arguments
 {{ .Method $ . .Field.Field2 1 }}
 ---
 (template
+  (action
     (method_call
-        (field
-            (identifier))
-        (argument_list
-            (variable)
-            (dot)
-            (selector_expression
-                (field (identifier))
-                (field_identifier))
-            (int_literal))))
+      (field
+        (identifier))
+      (argument_list
+        (variable)
+        (dot)
+        (selector_expression
+          (field (identifier))
+          (field_identifier))
+        (int_literal)))))
 
 ====================================
 Method on a field without arguments
@@ -78,10 +84,11 @@ Method on a field without arguments
 {{ .Field.Method }}
 ---
 (template
+  (action
     (selector_expression
-        (field
-            (identifier))
-        (field_identifier)))
+      (field
+        (identifier))
+      (field_identifier))))
 
 ====================================
 Method on a field with arguments
@@ -89,19 +96,20 @@ Method on a field with arguments
 {{ .Field.Method $ . .Field.Field2 1 }}
 ---
 (template
+  (action
     (method_call
+      (selector_expression
+        (field
+          (identifier))
+        (field_identifier))
+      (argument_list
+        (variable)
+        (dot)
         (selector_expression
-            (field
-                (identifier))
-            (field_identifier))
-        (argument_list
-            (variable)
-            (dot)
-            (selector_expression
-                (field
-                    (identifier))
-                (field_identifier))
-            (int_literal))))
+          (field
+            (identifier))
+          (field_identifier))
+        (int_literal)))))
 
 ====================================
 Selector expression on a parenthesized pipeline
@@ -109,8 +117,9 @@ Selector expression on a parenthesized pipeline
 {{ (pipeline).Field }}
 ---
 (template
-  (selector_expression
-    (parenthesized_pipeline
-      (function_call
-        (identifier)))
-    (field_identifier)))
+  (action
+    (selector_expression
+      (parenthesized_pipeline
+        (function_call
+          (identifier)))
+      (field_identifier))))

@@ -4,7 +4,7 @@ Nil
 {{ nil }}
 ---
 (template
-    (nil))
+  (action (nil)))
 
 ====================================
 Dot field
@@ -12,7 +12,7 @@ Dot field
 {{ . }}
 ---
 (template
-    (dot))
+  (action (dot)))
 
 ====================================
 Field
@@ -20,8 +20,8 @@ Field
 {{ .Field }}
 ---
 (template
-    (field
-        (identifier)))
+  (action (field (identifier)))
+)
 
 ====================================
 Chained fields
@@ -29,10 +29,11 @@ Chained fields
 {{ .Field.Field2 }}
 ---
 (template
+  (action
     (selector_expression
-        (field
-            (identifier))
-        (field_identifier)))
+      (field
+        (identifier))
+      (field_identifier))))
 
 ====================================
 Variable without name
@@ -40,7 +41,8 @@ Variable without name
 {{ $ }}
 ---
 (template
-    (variable))
+  (action
+    (variable)))
 
 ====================================
 Unnamed variable with field
@@ -48,9 +50,10 @@ Unnamed variable with field
 {{ $.Field }}
 ---
 (template
+  (action
     (selector_expression
-        (variable)
-        (field_identifier)))
+      (variable)
+      (field_identifier))))
 
 ====================================
 Unnamed variable with chained field
@@ -58,11 +61,12 @@ Unnamed variable with chained field
 {{ $.Field.Field2 }}
 ---
 (template
+  (action
     (selector_expression
-        (selector_expression
-            (variable)
-            (field_identifier))
-        (field_identifier)))
+      (selector_expression
+        (variable)
+        (field_identifier))
+      (field_identifier))))
 
 ====================================
 Named variable
@@ -70,8 +74,9 @@ Named variable
 {{ $var }}
 ---
 (template
+  (action
     (variable
-        (identifier)))
+      (identifier))))
 
 ====================================
 Named variable with field
@@ -79,10 +84,11 @@ Named variable with field
 {{ $var.Field }}
 ---
 (template
+  (action
     (selector_expression
-        (variable
-            (identifier))
-        (field_identifier)))
+      (variable
+        (identifier))
+      (field_identifier))))
 
 ====================================
 Named variable with chained field
@@ -90,12 +96,13 @@ Named variable with chained field
 {{ $var.Field.Field2 }}
 ---
 (template
+  (action
     (selector_expression
-        (selector_expression
-            (variable
-                (identifier))
-            (field_identifier))
-        (field_identifier)))
+      (selector_expression
+        (variable
+          (identifier))
+        (field_identifier))
+      (field_identifier))))
 
 ====================================
 Two fields seperated by whitespace / method call with field as argument
@@ -103,9 +110,10 @@ Two fields seperated by whitespace / method call with field as argument
 {{ .Field .Field }}
 ---
 (template
-  (method_call
-    (field
-      (identifier))
-    (argument_list
+  (action
+    (method_call
       (field
-        (identifier)))))
+        (identifier))
+      (argument_list
+        (field
+          (identifier))))))
